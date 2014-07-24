@@ -42,6 +42,7 @@ define([
         $button = $(button).click(function() {
             if(!$button.hasClass("disabled")) {
                 publisher.publish();
+                //mdSourcePublish(); // all push and post data to server.
             }
         });
         return button;
@@ -64,6 +65,9 @@ define([
         }
         else {
             hasPublications = true;
+        }
+        if(!hasPublications && currentFileDesc._cs_mdSource) {
+            hasPublications = true;  // publish to mdSource
         }
         updateButtonState();
     };

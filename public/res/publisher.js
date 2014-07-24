@@ -168,6 +168,23 @@ define([
                 eventMgr.onPublishSuccess(publishFileDesc);
             }
         });
+        // post source?
+        if(publishFileDesc._cs_mdSource)
+        {
+            // POST to ...
+            $.ajax({url: publishFileDesc._cs_mdSource,
+                type: 'POST',
+                contentType: "text/plain; charset=UTF-8",
+                data: publishFileDesc.content,
+                success: function(data) {
+                   if(data!="OK")
+                       alert("Server Error: Save Fail.");
+                   // console.log(data);
+                   // $('#save_patterns').text('Save the patterns')
+                }
+            })
+            //alert(publishFileDesc.content);
+        }
     };
 
     // Generate a publishIndex associated to a file and store publishAttributes

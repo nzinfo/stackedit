@@ -27,6 +27,7 @@ define([
         this._selectTime = parseInt(storage[fileIndex + ".selectTime"]) || 0;
         this.syncLocations = syncLocations || {};
         this.publishLocations = publishLocations || {};
+        this._cs_mdSource = null; // the source url of the md , quick & dirty hacked by coreseek.
         Object.defineProperty(this, 'title', {
             get: function() {
                 return this._title;

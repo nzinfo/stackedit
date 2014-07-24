@@ -38,7 +38,17 @@ define([
         if(fileMgr.currentFile !== fileDesc) {
             fileMgr.currentFile = fileDesc;
             fileDesc.selectTime = new Date().getTime();
-
+            {
+                // quick & dirty fix by coreseek.
+                var origin_md =  document.getElementById("origin_md_ctx"); //$("#origin_md_ctx").val();
+                if(origin_md) {
+                    //alert(origin_md.text );
+                    fileDesc.content = origin_md.text ;
+                    fileDesc._cs_mdSource = document.getElementById("origin_md_ctx_src").src;
+                    var filename = fileDesc._cs_mdSource.substring(fileDesc._cs_mdSource.lastIndexOf('/')+1);
+                    fileDesc.title = filename;
+                }
+            }
             // Notify extensions
             eventMgr.onFileSelected(fileDesc);
 
